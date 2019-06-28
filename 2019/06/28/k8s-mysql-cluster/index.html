@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Mysql,Cluster,Kubernetes,">
 
 
 
@@ -79,13 +79,25 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mimoland">
-<meta property="og:url" content="https://stharuki.github.io/index.html">
+<meta name="description" content="首先，获取集群中所有名称中含有mysql的服务。一般来说，人们往往会将mysql服务命名为Mysql而不是Redis或MongoDB           图1 集群中所有名称中含有mysql的服务   从图1中可以看出，集群中名称含有Mysql的服务有四个，而这四个服务中，只有mysql-service服务的EXTERNAL-IP类型为nodes，表示可以通过集群中每个节点自身的IP访问该服务。之">
+<meta name="keywords" content="Mysql,Cluster,Kubernetes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用K8S工具查看环境内Mysql集群部署方式">
+<meta property="og:url" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/index.html">
 <meta property="og:site_name" content="Mimoland">
+<meta property="og:description" content="首先，获取集群中所有名称中含有mysql的服务。一般来说，人们往往会将mysql服务命名为Mysql而不是Redis或MongoDB           图1 集群中所有名称中含有mysql的服务   从图1中可以看出，集群中名称含有Mysql的服务有四个，而这四个服务中，只有mysql-service服务的EXTERNAL-IP类型为nodes，表示可以通过集群中每个节点自身的IP访问该服务。之">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql001.png">
+<meta property="og:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql002.png">
+<meta property="og:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql003.png">
+<meta property="og:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql004.png">
+<meta property="og:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql005.png">
+<meta property="og:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql006.png">
+<meta property="og:updated_time" content="2019-06-28T07:03:06.541Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mimoland">
+<meta name="twitter:title" content="使用K8S工具查看环境内Mysql集群部署方式">
+<meta name="twitter:description" content="首先，获取集群中所有名称中含有mysql的服务。一般来说，人们往往会将mysql服务命名为Mysql而不是Redis或MongoDB           图1 集群中所有名称中含有mysql的服务   从图1中可以看出，集群中名称含有Mysql的服务有四个，而这四个服务中，只有mysql-service服务的EXTERNAL-IP类型为nodes，表示可以通过集群中每个节点自身的IP访问该服务。之">
+<meta name="twitter:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql001.png">
 
 
 
@@ -115,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://stharuki.github.io/">
+  <link rel="canonical" href="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/">
 
 
 
 
 
-  <title>Mimoland</title>
+  <title>使用K8S工具查看环境内Mysql集群部署方式 | Mimoland</title>
   
 
 
@@ -140,8 +152,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,9 +245,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -266,9 +277,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/28/k8s-mysql-cluster/" itemprop="url">使用K8S工具查看环境内Mysql集群部署方式</a></h1>
+          <h1 class="post-title" itemprop="name headline">使用K8S工具查看环境内Mysql集群部署方式</h1>
         
 
         <div class="post-meta">
@@ -340,9 +349,7 @@
       
 
       
-        
-          
-            <p>首先，获取集群中所有名称中含有mysql的服务。<em>一般来说，人们往往会将mysql服务命名为Mysql而不是Redis或MongoDB</em></p>
+        <p>首先，获取集群中所有名称中含有mysql的服务。<em>一般来说，人们往往会将mysql服务命名为Mysql而不是Redis或MongoDB</em></p>
 <center>
     <img style="border-radius: 0.3125em;
     box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="img/k8s-mysql-cluster/mysql001.png">
@@ -403,8 +410,6 @@
 
 <p>如何确定<code>address</code>为<code>mysql-node1，mysql-node2，mysql-node3</code>的三个服务器即为我们在上面看到的<code>mysql-node1，mysql-node2，mysql-node3</code>的三个服务呢，我们可以选择查看<code>/etc/hosts</code>中主机和IP的映射表，经过对比，我们可以发现<code>/etc/hosts</code>的IP即为<code>mysql-node1，mysql-node2，mysql-node3</code>三个服务被分配的虚IP。<br>至此，查看集群中mysql部署方式的过程结束。可以确定，在该集群环境中，通过maxscale这个数据中间件实现对mysql的读写控制和负载均衡。</p>
 
-          
-        
       
     </div>
     
@@ -419,14 +424,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+            <a href="/tags/Cluster/" rel="tag"># Cluster</a>
+          
+            <a href="/tags/Kubernetes/" rel="tag"># Kubernetes</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -436,10 +451,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -447,6 +463,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -684,6 +704,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
