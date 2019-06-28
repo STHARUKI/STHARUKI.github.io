@@ -87,17 +87,17 @@
 <meta property="og:site_name" content="Mimoland">
 <meta property="og:description" content="首先，获取集群中所有名称中含有mysql的服务。一般来说，人们往往会将mysql服务命名为Mysql而不是Redis或MongoDB           图1 集群中所有名称中含有mysql的服务   从图1中可以看出，集群中名称含有Mysql的服务有四个，而这四个服务中，只有mysql-service服务的EXTERNAL-IP类型为nodes，表示可以通过集群中每个节点自身的IP访问该服务。之">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql001.png">
-<meta property="og:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql002.png">
-<meta property="og:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql003.png">
-<meta property="og:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql004.png">
-<meta property="og:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql005.png">
-<meta property="og:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql006.png">
-<meta property="og:updated_time" content="2019-06-28T07:03:06.541Z">
+<meta property="og:image" content="https://stharuki.github.io/.io//mysql001.png">
+<meta property="og:image" content="https://stharuki.github.io/.io//mysql002.png">
+<meta property="og:image" content="https://stharuki.github.io/.io//mysql003.png">
+<meta property="og:image" content="https://stharuki.github.io/.io//mysql004.png">
+<meta property="og:image" content="https://stharuki.github.io/.io//mysql005.png">
+<meta property="og:image" content="https://stharuki.github.io/.io//mysql006.png">
+<meta property="og:updated_time" content="2019-06-28T07:37:32.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用K8S工具查看环境内Mysql集群部署方式">
 <meta name="twitter:description" content="首先，获取集群中所有名称中含有mysql的服务。一般来说，人们往往会将mysql服务命名为Mysql而不是Redis或MongoDB           图1 集群中所有名称中含有mysql的服务   从图1中可以看出，集群中名称含有Mysql的服务有四个，而这四个服务中，只有mysql-service服务的EXTERNAL-IP类型为nodes，表示可以通过集群中每个节点自身的IP访问该服务。之">
-<meta name="twitter:image" content="https://stharuki.github.io/2019/06/28/k8s-mysql-cluster/img/k8s-mysql-cluster/mysql001.png">
+<meta name="twitter:image" content="https://stharuki.github.io/.io//mysql001.png">
 
 
 
@@ -289,7 +289,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-28T15:03:06+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-28T15:37:32+08:00">
                 2019-06-28
               </time>
             
@@ -352,7 +352,7 @@
         <p>首先，获取集群中所有名称中含有mysql的服务。<em>一般来说，人们往往会将mysql服务命名为Mysql而不是Redis或MongoDB</em></p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="img/k8s-mysql-cluster/mysql001.png">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/.io//mysql001.png">
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
@@ -362,7 +362,7 @@
 <p>从图1中可以看出，集群中名称含有Mysql的服务有四个，而这四个服务中，只有mysql-service服务的EXTERNAL-IP类型为nodes，表示可以通过集群中每个节点自身的IP访问该服务。<br>之后，获取集群中节点信息。</p>
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="img/k8s-mysql-cluster/mysql002.png">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/.io//mysql002.png">
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
@@ -373,7 +373,7 @@
 接下来，对mysql-service服务所指向的Pod进行分析，先获取mysql-service的描述文件。
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="img/k8s-mysql-cluster/mysql003.png">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/.io//mysql003.png">
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
@@ -382,7 +382,7 @@
 从描述文件中，我们可以看到Selector属性对应的label，意为mysql-service服务由该label对应的Pod提供。下面，我们查找这个label所对应的pod。
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="img/k8s-mysql-cluster/mysql004.png">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/.io//mysql004.png">
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
@@ -391,7 +391,7 @@
 如图4，忽略掉STATUS处于Unkown状态的pod，我们查看处于Running状态的pod的描述文件。
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="img/k8s-mysql-cluster/mysql005.png">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/.io//mysql005.png">
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
@@ -401,7 +401,7 @@
 下面进入该pod，查看maxscale主从机的情况。
 <center>
     <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="img/k8s-mysql-cluster/mysql006.png">
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="/.io//mysql006.png">
     <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
@@ -514,7 +514,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
